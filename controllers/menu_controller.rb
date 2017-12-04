@@ -34,7 +34,7 @@ class MenuController
         main_menu
       when 4
         system "clear"
-        view_entry
+        entry_n_submenu
         main_menu
       when 5
         system "clear"
@@ -62,15 +62,19 @@ class MenuController
   def read_csv
   end
 
-  def view_entry
-    system "clear"
-    puts "View AddressBloc Entry"
+  def entry_n_submenu
+    print "Entry Number to view: "
+    selection = gets.chomp.to_i
 
-    print "Enter Entry Number: "
-    number = gets.chomp
-
-    system "clear"
-    puts entry.to_s
+    if selection < @address_book.entries.count
+      puts @address_book.entries[selection]
+      puts "Press enter to return to the main menu"
+      gets.chomp
+      system "clear"
+    else
+      puts "#{selection} is not a valid input"
+      entry_n_submenu
+    end
   end
 
   def create_entry
