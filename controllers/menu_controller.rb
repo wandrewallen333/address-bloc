@@ -14,7 +14,8 @@ class MenuController
     puts "3 - Search for an entry"
     puts "4 - View Entry Number n"
     puts "5 - Import entries from a CSV"
-    puts "6 - Exit"
+    puts "6 - NUKE!"
+    puts "7 - Exit"
     print "Enter your selection: "
 
     selection = gets.to_i
@@ -41,6 +42,11 @@ class MenuController
         read_csv
         main_menu
       when 6
+        system "clear"
+        @address_book.nuke
+        puts "All entries have been removed!"
+        main_menu
+      when 7
         puts "Good-bye!"
         exit(0)
       else
@@ -73,6 +79,11 @@ class MenuController
   def delete_entry(entry)
     address_book.entries.delete(entry)
     puts "#{entry.name} has been deleted"
+  end
+
+  def nuke(entries)
+    address_book.entries.delete
+    puts "You've deleted all entries!"
   end
 
   def search_entries
@@ -148,7 +159,7 @@ class MenuController
         puts entry.to_s
         search_submenu(entry)
     end
-  end 
+  end
 
   def create_entry
     system "clear"

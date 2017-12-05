@@ -9,6 +9,10 @@
        @entries = []
      end
 
+     def nuke
+       @entries = [] 
+     end
+
      def remove_entry(name, phone_number, email)
        delete_entry = nil
 
@@ -68,7 +72,7 @@
          return entry
        end
      end
-      return nil  
+      return nil
    end
 
  end
